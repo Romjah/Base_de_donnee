@@ -17,7 +17,9 @@ class DbManager {
 
     // return l'id inseré
     function insert(string $sql, array $data) {
-        // $this->db->prepare
+        $this -> db -> prepare($sql)
+        -> execute($data);
+        return $this ->db -> lastInsertId();
     }
 
     function insert_advanced(DbObject $dbObj) {
