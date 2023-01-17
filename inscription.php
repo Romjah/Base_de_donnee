@@ -9,7 +9,7 @@
      $user = "root";
      $pass = "root";
      $dbh = new PDO('mysql:host=localhost;dbname=Banque', $user, $pass);
-
+    
     <nav id="tt_les_champ">
         
     <div id="champ_id">
