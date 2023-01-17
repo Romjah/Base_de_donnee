@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 17 jan. 2023 à 11:15
+-- Généré le : mar. 17 jan. 2023 à 10:49
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -31,6 +31,7 @@ CREATE TABLE `bankaccounts` (
   `id_user` int(11) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `phone` int(10) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `monnaie` varchar(255) NOT NULL,
   `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -42,9 +43,11 @@ CREATE TABLE `bankaccounts` (
 --
 
 CREATE TABLE `currencies` (
-  `id_monnaie` int(11) NOT NULL,
-  `nom_monnaie` int(11) NOT NULL,
-  `taux_change` varchar(255) NOT NULL
+  `euros(€)` int(11) NOT NULL,
+  `dollars($)` int(11) NOT NULL,
+  `renminbi (RMB)` int(11) NOT NULL,
+  `Livre Sterling (GBP, £)` int(11) NOT NULL,
+  `id_users` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
