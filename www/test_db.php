@@ -34,8 +34,8 @@ echo '</div><hr>';
 // TEST insert
 echo '<div><h2>Test insert</h2>';
 $idInserted = $dbManager->insert(
-    'INSERT INTO bankaccounts(fullname, phone, email, message) VALUES(?, ?, ?, ?)',
-    ['Test fullname', '08020282924', 'test@test.com', 'TEST Message']
+    'INSERT INTO bankaccounts(id_user,fullname, phone, email, monnaie, created _at) VALUES(?, ?, ?, ?, ?, ?)',
+    ['Test fullname', '08020282924', 'test@test.com', 'TEST', 'test']
 );
 
 var_dump($idInserted);
