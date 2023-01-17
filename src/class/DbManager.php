@@ -21,11 +21,17 @@ class DbManager {
     }
 
     function insert_advanced(DbObject $dbObj) {
-
+        $info = $this -> prepare($sql);
+        $info -> $execute($data);
+        return $info -> fetch($data);
+    }
     }
 
     function select(string $sql, array $data, string $className) {
-
+        $trp = $this -> prepare($sql);
+        $trp -> $execute($data);
+        $trp -> setFetchMode(PDO::FETCH_CLASS, $className);
+        return $trp->fetchAll();
     }
 
     function getById(string $tableName, $id, string $className) {
