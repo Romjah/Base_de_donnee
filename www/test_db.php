@@ -15,7 +15,7 @@ require_once __DIR__ . '/../src/templates/partials/html_head.php';
 <?php
 // TEST select
 echo '<div><h2>Test select</h2>';
-$forms = $dbManager->select('SELECT * FROM contact_forms', [], 'ContactForm');
+$forms = $dbManager->select('SELECT * FROM bankaccounts', [], 'ContactForm');
 var_dump($forms);
 echo '</div><hr>';
 
@@ -34,7 +34,7 @@ echo '</div><hr>';
 // TEST insert
 echo '<div><h2>Test insert</h2>';
 $idInserted = $dbManager->insert(
-    'INSERT INTO contact_forms(fullname, phone, email, message) VALUES(?, ?, ?, ?)',
+    'INSERT INTO bankaccounts(fullname, phone, email, message) VALUES(?, ?, ?, ?)',
     ['Test fullname', '08020282924', 'test@test.com', 'TEST Message']
 );
 
@@ -43,14 +43,14 @@ echo '</div><hr>';
 
 // TEST getById
 echo '<div><h2>Test getById</h2>';
-$contactForm1 = $dbManager->getById('contact_forms', 1, 'ContactForm');
+$contactForm1 = $dbManager->getById('banckaccounts', 1, 'ContactForm');
 
 var_dump($contactForm1);
 echo '</div><hr>';
 
 // TEST getBy
 echo '<div><h2>Test getBy</h2>';
-$contactForm1b = $dbManager->getById('contact_forms', 'id', 1, 'ContactForm');
+$contactForm1b = $dbManager->getById('banckaccounts', 'id', 1, 'ContactForm');
 
 var_dump($contactForm1b);
 echo '</div><hr>';
@@ -72,7 +72,7 @@ echo '</div><hr>';
 // TEST update
 echo '<div><h2>Test update</h2>';
 $updated = $dbManager->update(
-    'contact_forms',
+    'banckaccounts',
     ['id'=> 1, 'fullname' => 'New fullname']
 );
 
@@ -81,7 +81,7 @@ echo '</div><hr>';
 
 // TEST update advanced
 echo '<div><h2>Test update</h2>';
-$laForm = $dbManager->getById('contact_forms', 1, 'ContactForm');
+$laForm = $dbManager->getById('banckaccounts', 1, 'ContactForm');
 $laForm->fullname = 'New fullname ??';
 $dbManager->update_advanced($laForm);
 
@@ -90,7 +90,7 @@ echo '</div><hr>';
 
 // TEST remove by id
 echo '<div><h2>remove by id</h2>';
-$removed = $dbManager->getById('contact_forms', 1);
+$removed = $dbManager->getById('banckaccounts', 1);
 
 var_dump($removed);
 echo '</div><hr>';

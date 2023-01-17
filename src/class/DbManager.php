@@ -25,9 +25,13 @@ class DbManager {
     function insert_advanced(DbObject $dbObj) {
 
     }
-
+    
     function select(string $sql, array $data, string $className) {
-
+        echo '<div><h2>select</h2>';
+        $req = $this->db->prepare($sql);
+        $req->execute($data);
+        $req->setFetchMode(PDO::FETCH_CLASS, 'ContactForm');
+        return $req->fetchAll();
     }
 
     function getById(string $tableName, $id, string $className) {
