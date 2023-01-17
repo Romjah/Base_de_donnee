@@ -23,16 +23,16 @@ class DbManager {
     }
 
     function insert_advanced(DbObject $dbObj) {
-        /*$ins = $this->db ->prepare($sql);
+        $ins = $this->db ->prepare($sql);
         $ins -> execute($data);
         $ins->setFetchMode(PDO::FETCH_CLASS, 'ContcatForms');
-        return $ins->fetchAll();*/
+        return $ins->fetchAll();
     }
 
     function select(string $sql, array $data, string $className) {
         $sel = $this->db ->prepare($sql);
-        $sel->execute($data);
-        $sel->setFetchMode(PDO::FETCH_CLASS, $className);
+        $sel -> execute($data);
+        $sel -> setFetchMode(PDO::FETCH_CLASS, $className);
         return $sel->fetchAll();
     }
     function getById(string $tableName, $id, string $className) {
