@@ -7,7 +7,7 @@
 </head>
 <body>
  <form method="POST" action="">
-        <input type="submit" value="redirection vers le dépôt" name="redirection vers le dépôt">
+        <input type=button onclick=window.location.href='http://localhost:8888/formulaire_depo.php'; value="Depo thunes" />
  </form>
 </body>
 </html>
