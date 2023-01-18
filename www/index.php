@@ -4,6 +4,10 @@ require_once __DIR__ . '/../src/init.php';
 // $db
 // $_SESSION
 
+if($role == "banni"){
+    die("vous n'avez pas accès à cette page !")
+}
+
 $page_title = 'Home page';
 require_once __DIR__ . '/../src/templates/partials/html_head.php';
 
