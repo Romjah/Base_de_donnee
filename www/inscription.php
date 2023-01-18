@@ -8,7 +8,7 @@ if (isset($_POST["inscription"])){
         $email = $_POST["email"];
         $mdp = hash('sha256', $_POST["mdp"]);
         $token= bin2hex(openssl_random_pseudo_bytes(64));
-        $insert_user = $bdd ->prepare('INSERT INTO user (nom, email, mdp, token) VALUES (?, ?, ?, ?)');
+        $insert_user = $bdd ->prepare('INSERT INTO users (nom, email, mdp, token) VALUES (?, ?, ?, ?)');
         $insert_user->execute (array($nom, $email, $mdp, $token));
         echo "L'utilisateur a bien été créé !";
         header("location:connexion.php");
