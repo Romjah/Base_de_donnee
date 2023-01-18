@@ -87,15 +87,18 @@ CREATE TABLE `transactions` (
 -- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id_user` int(11) NOT NULL,
-  `role` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `grade` int(4) NOT NULL,
-  `id_transaction` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `password` text NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `token` text NOT NULL,
+  `date_inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_user`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+COMMIT;
 
 -- --------------------------------------------------------
 
