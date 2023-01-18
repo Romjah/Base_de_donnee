@@ -94,7 +94,9 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grade` int(4) NOT NULL,
-  `id_transaction` int(11) NOT NULL
+  `id_transaction` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
