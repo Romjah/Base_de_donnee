@@ -1,32 +1,37 @@
+<?php
+
+require_once __DIR__ . '/../src/init.php';
+
+if (isset($_POST["inscription"])){
+    if(!empty($_POST['email']) || !empty($_POST['mdp'])){
+        $email = htmlspecialchars($_POST["email"]);
+        $mdp = hash('sha256', $_POST["mdp"]);
+        $insert_user = $bdd ->prepare('INSERT INTO users (email, mdp) VALUES (?, ?)');
+        $insert_user->execute (array($email, $mdp));
+        echo "L'utilisateur a bien été créé !";
+        header("location:connexion.php");
+
+    } else{
+        echo "les champs ne sont pas remplis";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>INSCRIPTION</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php
-     $user = "root";
-     $pass = "root";
-     $dbh = new PDO('mysql:host=localhost;dbname=Banque', $user, $pass);
+    <form method="POST" action="">
     
-    <nav id="tt_les_champ">
-        
-    <div id="champ_id">
-        <label for="id">id :</label>
-        <input type="text" id="mail" name="user_id">
-    </div>
+        <input type="text" name="email">
+        <br>
+        <input type="password" name="mdp">
+        <br>
+        <input type="submit" value="sinscrire" name="inscription">
 
-    <div id="champ_password">
-        <label for="password">password:</label>
-        <input type="password" id="pass" name="user_password">
-    </div>
-
-    <div id="bouton_inscription">
-        <input type="button" value="s'inscrire">
-    </div>
-</nav>
-
-</form>
+    </form>
 </body>
 </html>
