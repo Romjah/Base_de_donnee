@@ -23,10 +23,6 @@ class DbManager {
     }
 
     function insert_advanced(DbObject $dbObj) {
-        /*$ins = $this->db ->prepare($sql);
-        $ins -> execute($data);
-        $ins->setFetchMode(PDO::FETCH_CLASS, 'ContcatForms');
-        return $ins->fetchAll();*/
     }
 
     function select(string $sql, array $data, string $className) {

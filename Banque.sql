@@ -1,14 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost:8889
--- Généré le : mar. 17 jan. 2023 à 10:49
--- Version du serveur :  5.7.34
--- Version de PHP : 8.0.8
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,42 +9,40 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `Banque`
+-- Database: `banque`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `bankaccounts`
+-- Table structure for table `bankaccounts`
 --
 
 CREATE TABLE `bankaccounts` (
   `id_user` int(11) NOT NULL,
-  `fullname` varchar(255) NOT NULL,
   `phone` int(10) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `monnaie` varchar(255) NOT NULL,
-  `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `monnaie` int(11) NOT NULL,
+  `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `currencies`
+-- Table structure for table `currencies`
 --
 
 CREATE TABLE `currencies` (
-  `euros(€)` int(11) NOT NULL,
-  `dollars($)` int(11) NOT NULL,
-  `renminbi (RMB)` int(11) NOT NULL,
-  `Livre Sterling (GBP, £)` int(11) NOT NULL,
-  `id_users` int(11) NOT NULL
+  `id_monnaie` int(11) NOT NULL,
+  `nom_monnaie` int(11) NOT NULL,
+  `taux_change` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `deposits`
+-- Table structure for table `deposits`
 --
 
 CREATE TABLE `deposits` (
@@ -69,7 +57,18 @@ CREATE TABLE `deposits` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `transactions`
+-- Table structure for table `rôles`
+--
+
+CREATE TABLE `rôles` (
+  `id` int(11) NOT NULL,
+  `roles` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
 --
 
 CREATE TABLE `transactions` (
@@ -85,63 +84,146 @@ CREATE TABLE `transactions` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
-  `pseudo` varchar(100) NOT NULL,
+CREATE TABLE `users` (
+  `id_user` int(11) NOT NULL,
+  `role` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` text NOT NULL,
-  `ip` varchar(20) NOT NULL,
-  `token` text NOT NULL,
-  `date_inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-COMMIT;
+  `password` varchar(255) NOT NULL,
+  `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `grade` int(4) NOT NULL,
+  `id_transaction` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `token` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `withdrawals`
+-- Table structure for table `withdrawals`
 --
 
 CREATE TABLE `withdrawals` (
   `id_user` int(11) NOT NULL,
   `id_role` int(11) NOT NULL,
-  `monnaie` varchar(200) NOT NULL,
+  `monnaie` int(11) NOT NULL,
   `date_retrait` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `montant_retrait` int(100) NOT NULL,
   `id_retrait` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `bankaccounts`
+-- Indexes for table `bankaccounts`
 --
 ALTER TABLE `bankaccounts`
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `monnaie` (`monnaie`);
+
+--
+-- Indexes for table `currencies`
+--
+ALTER TABLE `currencies`
+  ADD PRIMARY KEY (`id_monnaie`);
+
+--
+-- Indexes for table `deposits`
+--
+ALTER TABLE `deposits`
+  ADD PRIMARY KEY (`id_depo`),
+  ADD KEY `monnaie` (`monnaie`),
+  ADD KEY `id_role` (`id_role`),
   ADD KEY `id_user` (`id_user`);
 
 --
--- Index pour la table `user`
+-- Indexes for table `rôles`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+ALTER TABLE `rôles`
+  ADD PRIMARY KEY (`id`);
 
 --
--- Contraintes pour les tables déchargées
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id_transaction`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `date_retrait` (`date_retrait`),
+  ADD KEY `date_depos` (`date_depos`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `id_transaction` (`id_transaction`),
+  ADD KEY `role` (`role`);
+
+--
+-- Indexes for table `withdrawals`
+--
+ALTER TABLE `withdrawals`
+  ADD PRIMARY KEY (`id_retrait`),
+  ADD KEY `monnaie` (`monnaie`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_role` (`id_role`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- Contraintes pour la table `bankaccounts`
+-- AUTO_INCREMENT for table `rôles`
+--
+ALTER TABLE `rôles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bankaccounts`
 --
 ALTER TABLE `bankaccounts`
-  ADD CONSTRAINT `bankaccounts_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `bankaccounts_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
+  ADD CONSTRAINT `bankaccounts_ibfk_2` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`);
+
+--
+-- Constraints for table `deposits`
+--
+ALTER TABLE `deposits`
+  ADD CONSTRAINT `deposits_ibfk_1` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`),
+  ADD CONSTRAINT `deposits_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `rôles` (`id`),
+  ADD CONSTRAINT `deposits_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+
+--
+-- Constraints for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`id_transaction`) REFERENCES `transactions` (`id_transaction`),
+  ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`role`) REFERENCES `rôles` (`id`);
+
+--
+-- Constraints for table `withdrawals`
+--
+ALTER TABLE `withdrawals`
+  ADD CONSTRAINT `withdrawals_ibfk_1` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`),
+  ADD CONSTRAINT `withdrawals_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
+  ADD CONSTRAINT `withdrawals_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `rôles` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;x

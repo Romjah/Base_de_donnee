@@ -50,10 +50,10 @@
                         <?php 
                         break;
 
-                        case 'pseudo_length':
+                        case 'nom_length':
                         ?>
                             <div class="alert alert-danger">
-                                <strong>Erreur</strong> pseudo trop long
+                                <strong>Erreur</strong> nom trop long
                             </div>
                         <?php 
                         case 'already':
@@ -70,7 +70,7 @@
             <form action="inscription_traitement.php" method="post">
                 <h2 class="text-center">Inscription</h2>       
                 <div class="form-group">
-                    <input type="text" name="pseudo" class="form-control" placeholder="Pseudo" required="required" autocomplete="off">
+                    <input type="text" name="nom" class="form-control" placeholder="nom" required="required" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <input type="email" name="email" class="form-control" placeholder="Email" required="required" autocomplete="off">
