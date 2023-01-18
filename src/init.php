@@ -4,6 +4,7 @@ session_start();
 // db
 require_once __DIR__ . '/db.php';
 
+// database
 require_once __DIR__ . '/database.php';
 
 // class
@@ -17,3 +18,4 @@ $dbManager = new DbManager($db);
 
 // utils
 require_once __DIR__ . '/utils/errors.php';
+?>
