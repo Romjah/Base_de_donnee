@@ -35,7 +35,8 @@ class DbManager {
         $sel->setFetchMode(PDO::FETCH_CLASS, $className);
         return $sel->fetchAll();
     }
-function getById(string $tableName, $id, string $className) {
+    
+    function getById(string $tableName, $id, string $className) {
         $gbi = $this->db ->prepare("SELECT * FROM $tableName WHERE id = :id");
         $gbi->execute(["id" => $id]);
         $gbi->setFetchMode(PDO::FETCH_CLASS, $className);
