@@ -12,7 +12,6 @@ if (isset($_POST["inscription"])){
         $insert_user->execute (array($nom, $email, $mdp, $token));
         echo "L'utilisateur a bien été créé !";
         header("location:connexion.php");
-
     } else{
         echo "les champs ne sont pas remplis";
     }
