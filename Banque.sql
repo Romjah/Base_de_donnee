@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 18, 2023 at 02:38 PM
--- Server version: 5.7.24
--- PHP Version: 8.0.1
+-- Hôte : localhost:8889
+-- Généré le : mer. 18 jan. 2023 à 22:04
+-- Version du serveur : 5.7.39
+-- Version de PHP : 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `banque`
+-- Base de données : `Banque`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bankaccounts`
+-- Structure de la table `bankaccounts`
 --
 
 CREATE TABLE `bankaccounts` (
@@ -39,7 +39,7 @@ CREATE TABLE `bankaccounts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `currencies`
+-- Structure de la table `currencies`
 --
 
 CREATE TABLE `currencies` (
@@ -51,7 +51,7 @@ CREATE TABLE `currencies` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `deposits`
+-- Structure de la table `deposits`
 --
 
 CREATE TABLE `deposits` (
@@ -66,7 +66,7 @@ CREATE TABLE `deposits` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rôles`
+-- Structure de la table `rôles`
 --
 
 CREATE TABLE `rôles` (
@@ -77,7 +77,7 @@ CREATE TABLE `rôles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transactions`
+-- Structure de la table `transactions`
 --
 
 CREATE TABLE `transactions` (
@@ -93,26 +93,26 @@ CREATE TABLE `transactions` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `role` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
   `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grade` int(4) NOT NULL,
   `id_transaction` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
-  `token` int(11) NOT NULL
+  `token` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `withdrawals`
+-- Structure de la table `withdrawals`
 --
 
 CREATE TABLE `withdrawals` (
@@ -125,24 +125,24 @@ CREATE TABLE `withdrawals` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `bankaccounts`
+-- Index pour la table `bankaccounts`
 --
 ALTER TABLE `bankaccounts`
   ADD KEY `id_user` (`id_user`),
   ADD KEY `monnaie` (`monnaie`);
 
 --
--- Indexes for table `currencies`
+-- Index pour la table `currencies`
 --
 ALTER TABLE `currencies`
   ADD PRIMARY KEY (`id_monnaie`);
 
 --
--- Indexes for table `deposits`
+-- Index pour la table `deposits`
 --
 ALTER TABLE `deposits`
   ADD PRIMARY KEY (`id_depo`),
@@ -151,13 +151,13 @@ ALTER TABLE `deposits`
   ADD KEY `id_user` (`id_user`);
 
 --
--- Indexes for table `rôles`
+-- Index pour la table `rôles`
 --
 ALTER TABLE `rôles`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `transactions`
+-- Index pour la table `transactions`
 --
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`id_transaction`),
@@ -166,7 +166,7 @@ ALTER TABLE `transactions`
   ADD KEY `date_depos` (`date_depos`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`),
@@ -174,7 +174,7 @@ ALTER TABLE `users`
   ADD KEY `role` (`role`);
 
 --
--- Indexes for table `withdrawals`
+-- Index pour la table `withdrawals`
 --
 ALTER TABLE `withdrawals`
   ADD PRIMARY KEY (`id_retrait`),
@@ -183,34 +183,34 @@ ALTER TABLE `withdrawals`
   ADD KEY `id_role` (`id_role`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `rôles`
+-- AUTO_INCREMENT pour la table `rôles`
 --
 ALTER TABLE `rôles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `bankaccounts`
+-- Contraintes pour la table `bankaccounts`
 --
 ALTER TABLE `bankaccounts`
   ADD CONSTRAINT `bankaccounts_ibfk_2` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`),
   ADD CONSTRAINT `bankaccounts_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
--- Constraints for table `deposits`
+-- Contraintes pour la table `deposits`
 --
 ALTER TABLE `deposits`
   ADD CONSTRAINT `deposits_ibfk_1` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`),
@@ -218,20 +218,20 @@ ALTER TABLE `deposits`
   ADD CONSTRAINT `deposits_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
--- Constraints for table `transactions`
+-- Contraintes pour la table `transactions`
 --
 ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
--- Constraints for table `users`
+-- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`id_transaction`) REFERENCES `transactions` (`id_transaction`),
   ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`role`) REFERENCES `rôles` (`id`);
 
 --
--- Constraints for table `withdrawals`
+-- Contraintes pour la table `withdrawals`
 --
 ALTER TABLE `withdrawals`
   ADD CONSTRAINT `withdrawals_ibfk_1` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`),
