@@ -98,7 +98,7 @@ CREATE TABLE `transactions` (
 
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
-  `role` int(11) NOT NULL,
+  `role` int(11) NOT NULL DEFAULT 0,
   `email` varchar(100) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
