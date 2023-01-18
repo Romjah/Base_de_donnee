@@ -73,6 +73,9 @@
                     <input type="text" name="nom" class="form-control" placeholder="nom" required="required" autocomplete="off">
                 </div>
                 <div class="form-group">
+                    <input type="text" name="prenom" class="form-control" placeholder="prenom" required="required" autocomplete="off">
+                </div>
+                <div class="form-group">
                     <input type="email" name="email" class="form-control" placeholder="Email" required="required" autocomplete="off">
                 </div>
                 <div class="form-group">
