@@ -24,16 +24,26 @@ if (isset($_POST["inscription"])){
     <meta charset="UTF-8">
     <title>INSCRIPTION</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+<div class="login-form">
+<h2 class="text-center">Inscription</h2>
     <form method="POST" action="">
-        <input  type="text" name="nom">
-        <input type="text" name="email">
-        <br>
-        <input type="password" name="mdp">
-        <br>
-        <input type="submit" value="sinscrire" name="inscription">
-
+    <div class="form-group">
+        <input  type="text" name="nom" placeholder="Nom">
+        </div>
+        <div class="form-group">
+        <input type="text" name="email" placeholder="Email" >
+        </div>
+        <div class="form-group">
+        <input type="password" name="mdp" placeholder="mot de passe">
+        </div>
+        <div class="form-group">
+        <input type="submit" value="inscription" class="btn btn-primary btn-block>Inscript" name="inscription">
+        </div>
+        </div>
     </form>
 </body>
 </html>
