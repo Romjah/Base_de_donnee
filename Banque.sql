@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` text NOT NULL,
   `ip` varchar(20) NOT NULL,
   `token` text NOT NULL,
+  `role` int(11) NOT NULL DEFAULT '1',
   `date_inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_user`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
