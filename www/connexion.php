@@ -1,6 +1,6 @@
 <?php 
     session_start(); // Démarrage de la session
-    require_once __DIR__ . '/../../src/config.php';
+    require_once __DIR__ . '../../src/config.php'; // On inclu la connexion à la bdd
 
     if(!empty($_POST['email']) && !empty($_POST['password'])) // Si il existe les champs email, password et qu'il sont pas vident
     {
@@ -10,15 +10,15 @@
         
         $email = strtolower($email); // email transformé en minuscule
         
-        // On regarde si l'user est inscrit dans la table user
-        $check = $bdd->prepare('SELECT nom, email, password, token FROM user WHERE email = ?');
+        // On regarde si l'utilisateur est inscrit dans la table users
+        $check = $bdd->prepare('SELECT fullname, email, password, token FROM users WHERE email = ?');
         $check->execute(array($email));
         $data = $check->fetch();
         $row = $check->rowCount();
         
         
 
-        // Si > à 0 alors l'user existe
+        // Si > à 0 alors l'utilisateur existe
         if($row > 0)
         {
             // Si le mail est bon niveau format
@@ -28,7 +28,7 @@
                 if(password_verify($password, $data['password']))
                 {
                     // On créer la session et on redirige sur landing.php
-                    $_SESSION['user'] = $data['token'];
+                    $_SESSION['users'] = $data['token'];
                     header('Location: landing.php');
                     die();
                 }else{ header('Location: index.php?login_err=password'); die(); }

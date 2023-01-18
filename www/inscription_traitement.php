@@ -1,26 +1,27 @@
 <?php 
-    require_once __DIR__ . '/../src/config.php'; // On inclu la connexion à la bdd
+    require_once __DIR__ . '../../src/config.php'; // On inclu la connexion à la bdd
+    echo 'testoooo';
 
     // Si les variables existent et qu'elles ne sont pas vides
-    if(!empty($_POST['nom']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_retype']))
-    {
+    if(!empty($_POST['fullname']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_retype'])){
         // Patch XSS
-        $nom = htmlspecialchars($_POST['nom']);
+        echo 'yo';
+        $fullname = htmlspecialchars($_POST['fullname']);
         $email = htmlspecialchars($_POST['email']);
         $password = htmlspecialchars($_POST['password']);
         $password_retype = htmlspecialchars($_POST['password_retype']);
-
-        // On vérifie si l'utilisateur existe
-        $check = $bdd->prepare('SELECT nom, email, password FROM user WHERE email = ?');
+        // On vérifie si l'users existe
+        $check = $bdd->prepare('SELECT fullname, email, password FROM users WHERE email = ?'); //+
         $check->execute(array($email));
         $data = $check->fetch();
         $row = $check->rowCount();
+       
 
         $email = strtolower($email); // on transforme toute les lettres majuscule en minuscule pour éviter que Foo@gmail.com et foo@gmail.com soient deux compte différents ..
         
-        // Si la requete renvoie un 0 alors l'utilisateur n'existe pas 
+        // Si la requete renvoie un 0 alors l'users n'existe pas 
         if($row == 0){ 
-            if(strlen($nom) <= 100){ // On verifie que la longueur du nom <= 100
+            if(strlen($fullname) <= 100){ // On verifie que la longueur du fullname$fullname <= 100
                 if(strlen($email) <= 100){ // On verifie que la longueur du mail <= 100
                     if(filter_var($email, FILTER_VALIDATE_EMAIL)){ // Si l'email est de la bonne forme
                         if($password === $password_retype){ // si les deux mdp saisis sont bon
@@ -31,20 +32,14 @@
                             
                             // On stock l'adresse IP
                             $ip = $_SERVER['REMOTE_ADDR']; 
-                             /*
-                              ATTENTION
-                              Verifiez bien que le champs token est présent dans votre table user, il a été rajouté APRÈS la vidéo
-                              le .sql est dispo pensez à l'importer ! 
-                              ATTENTION
-                            */
                             // On insère dans la base de données
-                            $insert = $bdd->prepare('INSERT INTO user(nom, email, password, ip, token) VALUES(:nom, :email, :password, :ip, :token)');
+                            $insert = $bdd->prepare('INSERT INTO users( email, password, fullname, token) VALUES( :email, :password, :fullname, :token)');
                             $insert->execute(array(
-                                'nom' => $nom,
+                                'fullname' => $fullname,
                                 'email' => $email,
                                 'password' => $password,
                                 'ip' => $ip,
-                                'token' => bin2hex(openssl_random_nom_bytes(64))
+                                'token' => bin2hex(openssl_random_fullname_bytes(64))
                             ));
                             // On redirige avec le message de succès
                             header('Location:inscription.php?reg_err=success');
@@ -52,6 +47,8 @@
                         }else{ header('Location: inscription.php?reg_err=password'); die();}
                     }else{ header('Location: inscription.php?reg_err=email'); die();}
                 }else{ header('Location: inscription.php?reg_err=email_length'); die();}
-            }else{ header('Location: inscription.php?reg_err=nom_length'); die();}
+            }else{ header('Location: inscription.php?reg_err=fullname_length'); die();}
         }else{ header('Location: inscription.php?reg_err=already'); die();}
+    }else{
+        echo'AAAAa';
     }

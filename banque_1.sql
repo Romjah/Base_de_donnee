@@ -1,3 +1,12 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jan 18, 2023 at 02:38 PM
+-- Server version: 5.7.24
+-- PHP Version: 8.0.1
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -95,8 +104,9 @@ CREATE TABLE `users` (
   `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grade` int(4) NOT NULL,
   `id_transaction` int(11) NOT NULL,
-  `fullname` varchar(255) NOT NULL,
-  `token` text NOT NULL
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `token` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -183,6 +193,12 @@ ALTER TABLE `rôles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -190,8 +206,8 @@ ALTER TABLE `rôles`
 -- Constraints for table `bankaccounts`
 --
 ALTER TABLE `bankaccounts`
-  ADD CONSTRAINT `bankaccounts_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
-  ADD CONSTRAINT `bankaccounts_ibfk_2` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`);
+  ADD CONSTRAINT `bankaccounts_ibfk_2` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`),
+  ADD CONSTRAINT `bankaccounts_ibfk_3` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 
 --
 -- Constraints for table `deposits`
@@ -213,15 +229,16 @@ ALTER TABLE `transactions`
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`id_transaction`) REFERENCES `transactions` (`id_transaction`),
   ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`role`) REFERENCES `rôles` (`id`);
+
 --
 -- Constraints for table `withdrawals`
 --
 ALTER TABLE `withdrawals`
   ADD CONSTRAINT `withdrawals_ibfk_1` FOREIGN KEY (`monnaie`) REFERENCES `currencies` (`id_monnaie`),
-  ADD CONSTRAINT `withdrawals_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
-  ADD CONSTRAINT `withdrawals_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `rôles` (`id`);
+  ADD CONSTRAINT `withdrawals_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `rôles` (`id`),
+  ADD CONSTRAINT `withdrawals_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;x
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
