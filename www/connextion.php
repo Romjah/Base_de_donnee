@@ -1,5 +1,5 @@
 <?php
-require_once DIR . '/../src/init.php';
+require_once __DIR__ . '/../src/init.php';
 ?>
 
 <!DOCTYPE html>

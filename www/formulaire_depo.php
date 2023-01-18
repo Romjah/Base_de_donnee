@@ -1,3 +1,20 @@
+<?php
+
+$user = 'root';
+$pass = 'root';
+
+try {
+    $db = new PDO ('mysql:host=localhost;dbname=Banque', $user, $pass);
+    foreach ($db->query('SELECT * FROM deposits') as $row) {
+        print_r($row);
+    }
+} catch (PDOException $e) {
+    print "Erreur : " . $e->getMessage() . "<br/>";
+    die;
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
