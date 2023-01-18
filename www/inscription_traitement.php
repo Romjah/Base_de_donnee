@@ -10,7 +10,7 @@
         $password = htmlspecialchars($_POST['password']);
         $password_retype = htmlspecialchars($_POST['password_retype']);
 
-        // On vérifie si l'utilisateur existe
+        // On vérifie si l'user existe
         $check = $bdd->prepare('SELECT pseudo, email, password FROM user WHERE email = ?');
         $check->execute(array($email));
         $data = $check->fetch();
@@ -18,7 +18,7 @@
         
         $email = strtolower($email); // on transforme toute les lettres majuscule en minuscule pour éviter que Foo@gmail.com et foo@gmail.com soient deux compte différents ..
         
-        // Si la requete renvoie un 0 alors l'utilisateur n'existe pas 
+        // Si la requete renvoie un 0 alors l'user n'existe pas 
         if($row == 0){ 
             if(strlen($pseudo) <= 100){ // On verifie que la longueur du pseudo <= 100
                 if(strlen($email) <= 100){ // On verifie que la longueur du mail <= 100
@@ -31,14 +31,9 @@
                             
                             // On stock l'adresse IP
                             $ip = $_SERVER['REMOTE_ADDR']; 
-                             /*
-                              ATTENTION
-                              Verifiez bien que le champs token est présent dans votre table utilisateurs, il a été rajouté APRÈS la vidéo
-                              le .sql est dispo pensez à l'importer ! 
-                              ATTENTION
-                            */
+
                             // On insère dans la base de données
-                            $insert = $bdd->prepare('INSERT INTO utilisateurs(pseudo, email, password, ip, token) VALUES(:pseudo, :email, :password, :ip, :token)');
+                            $insert = $bdd->prepare('INSERT INTO user(pseudo, email, password, ip, token) VALUES(:pseudo, :email, :password, :ip, :token)');
                             $insert->execute(array(
                                 'pseudo' => $pseudo,
                                 'email' => $email,
