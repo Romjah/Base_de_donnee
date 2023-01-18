@@ -18,21 +18,21 @@ class DbManager {
     // return l'id inseré
     function insert(string $sql, array $data) {
         $ins = $this->db ->prepare($sql);
-        $ins -> execute($data);
+        $ins->execute($data);
         return $data;
     }
 
     function insert_advanced(DbObject $dbObj) {
-        $ins = $this->db ->prepare($sql);
-        $ins -> execute($data);
-        $ins->setFetchMode(PDO::FETCH_CLASS, 'ContcatForms');
-        return $ins->fetchAll();
+        // $ins = $this->db ->prepare($sql);
+        // $ins->execute($data);
+        // $ins->setFetchMode(PDO::FETCH_CLASS, 'ContcatForms');
+        // return $ins->fetchAll();
     }
 
     function select(string $sql, array $data, string $className) {
         $sel = $this->db ->prepare($sql);
-        $sel -> execute($data);
-        $sel -> setFetchMode(PDO::FETCH_CLASS, $className);
+        $sel->execute($data);
+        $sel->setFetchMode(PDO::FETCH_CLASS, $className);
         return $sel->fetchAll();
     }
     function getById(string $tableName, $id, string $className) {
@@ -43,7 +43,10 @@ class DbManager {
     }
 
     function getById_advanced($id, string $className) {
-        //$this->db -> prepare(getById($id), $className);
+        $gbi = $this->db -> prepare(getById($id), $className);
+        $gbi->execute(getById($id));
+        $gbi->setFetchMode(PDO::FETCH_CLASS, $className);
+        return $gbi->fetch();
     }
 
     function getBy(string $tableName, string $column, $valeur, string $className) {
@@ -54,7 +57,10 @@ class DbManager {
     }
 
     function getBy_advanced(string $column, $value, string $className) {
-
+        $gb = $this->db ->prepare("SELECT * FROM $column WHERE valeur = :valeur");
+        $gb-> execute(["valeur" => $valeur]);
+        $gb->setFetchMode(PDO::FETCH_CLASS, $column);
+        return $gb->fetchAll();
     }
 
     function removeById(string $tableName, $id) {
