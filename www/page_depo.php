@@ -4,15 +4,11 @@
     <title>Page perso</title>
 </head>
 <body>
- <form method="get" action="formulaire_depo.php">
+ <form method="get" action="perso.php">
     <p>
-        <input type="number" name="role" />
-        <input type="text" name="email" />
-        <input type="text" name="password" />
-        <input type="number" name="id_transaction" />
         <input type="text" name="nom" />
         <input type="text" name="prenom" />
-        <input type="number" name="token" />
+        <input type="text" name="email" />
         <input type="submit" value="Depo thunes" />
     </p>
  </form>
