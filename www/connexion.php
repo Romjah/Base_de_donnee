@@ -1,9 +1,17 @@
 <?php
 require_once __DIR__ . '/../src/init.php';
 if(isset($_POST['connexion'])){
+    $emailAdmin="admin@admin.com";
+    $mdpAdmin="ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270";
+
     if(!empty($_POST['email']) && !empty($_POST['mdp'])){
         $email = $_POST["email"];
         $mdp = hash('sha256', $_POST["mdp"]);
+        
+        if ($emailAdmin === $email && $mdpAdmin === $mdp){
+            $_SESSION['mdp'] = $mdp;
+        header ('Location: administration.php');
+        }
     
         $reccupUser = $bdd->prepare('SELECT * FROM user WHERE email= ? and mdp= ?');
         $reccupUser->execute(array($email, $mdp));
