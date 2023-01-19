@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 19 jan. 2023 à 09:39
+-- Généré le : jeu. 19 jan. 2023 à 09:40
 -- Version du serveur : 5.7.39
 -- Version de PHP : 8.2.0
 
@@ -100,7 +100,7 @@ CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `role` int(11) NOT NULL DEFAULT '1',
   `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grade` varchar(255) NOT NULL DEFAULT 'non_verif',
   `id_transaction` int(11) NOT NULL,
