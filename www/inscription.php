@@ -67,7 +67,7 @@
                 }
                 ?>
             
-            <form action="inscription_traitement.php" method="post">
+            <form action="signup_traitement.php" method="post">
                 <h2 class="text-center">Inscription</h2>       
                 <div class="form-group">
                     <input type="text" name="nom" class="form-control" placeholder="nom" required="required" autocomplete="off">
@@ -79,10 +79,10 @@
                     <input type="email" name="email" class="form-control" placeholder="Email" required="required" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Mot de passe" required="required" autocomplete="off">
+                    <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required="required" autocomplete="off">
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password_retype" class="form-control" placeholder="Re-tapez le mot de passe" required="required" autocomplete="off">
+                    <input type="password" name="mdp_retype" class="form-control" placeholder="Re-tapez le mot de passe" required="required" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block">Inscription</button>

@@ -2,7 +2,7 @@
 
 $config = ['db' => [
     'host' => 'localhost',
-    'name' => 'Banquee',
+    'name' => 'esteban',
     'port' => 8889,
     'user' => 'root',
     'pass' => 'root'
