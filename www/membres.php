@@ -19,6 +19,5 @@ if (!$_SESSION['mdp']){
         <?php
     }
     ?>
-    ?>
 </body>
 </html>
