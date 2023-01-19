@@ -9,22 +9,14 @@ if (isset($_POST["inscription"])){
         $email = $_POST["email"];
         $mdp = hash('sha256', $_POST["mdp"]);
         $token= bin2hex(openssl_random_pseudo_bytes(64));
-        
-        $check_email = $bdd->prepare('SELECT email FROM users WHERE email = ?');
-        $check_email->execute(array($email));
-        if($check_email->rowCount() > 0){
-            echo "Cet email est déjà relié à un compte";
-        } else {
-            $insert_user = $bdd ->prepare('INSERT INTO users (email, mdp, nom, prenom, token) VALUES (?, ?, ?, ?, ?)');
-            $insert_user->execute (array($email, $mdp, $nom, $prenom, $token));
-            echo "L'utilisateur a bien été créé !";
-            header("location:connexion.php");
-        }
+        $insert_user = $bdd ->prepare('INSERT INTO users (email, mdp, nom, prenom, token) VALUES (?, ?, ?, ?, ?)');
+        $insert_user->execute (array($email, $mdp, $nom, $prenom, $token));
+        echo "L'utilisateur a bien été créé !";
+        header("location:connexion.php");
     } else{
         echo "les champs ne sont pas remplis";
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">

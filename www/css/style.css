@@ -1,0 +1,557 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  
+}
+html{
+  scroll-behavior: smooth;
+}
+a{
+  text-decoration: none;
+}
+@font-face {
+font-family: "Sofia Pro";
+src: url("../fonts/sofiapro.woff2");
+}
+@font-face {
+font-family: "Saol Display";
+src: url("../fonts/SaolDisplay.woff2");
+}
+@font-face {
+font-family: "Saol Text";
+src: url("../fonts/SaolText-Regular.woff2");
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+section{
+  position: relative;
+}
+section img{
+  z-index: 1;
+  width: 100%;
+  height:100vh;
+  object-fit: cover;
+  overflow: hidden;
+  right: 0;
+}
+@media (max-width:767px) {
+  section img{
+    height: 600px;
+    margin-bottom: 120px;
+  }
+}
+section .content{
+  position: absolute;
+  border-radius: 2px;
+  background-color: #fff;
+  bottom: 0;
+  padding: 40px;
+  width: calc(40ch + 62px);
+  padding: 62px calc(15% - 10ch - 15.5px) 90px 62px;
+}
+@media (max-width:767px) {
+  section .content{
+    width:95% !important;
+    padding: 20px;
+    padding-bottom: 40px;
+  }
+}
+section:nth-child(even) .content{
+  left: 0;
+}
+section:nth-child(odd) .content{
+  right: 0;
+}
+section .content h1{
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 1.125;
+  font-family: "Saol Display", "Times New Roman", Times, serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgb(51, 51, 51);
+  margin-bottom: 10px;
+  font-size: 42px;
+}
+@media (max-width:767px) {
+  section .content h1{
+    font-size: 30px;
+    letter-spacing: .4px;
+  }
+}
+section .content h1 span{
+  display: block;
+}
+section .content p{
+  font-size: 15.5px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 300;
+  font-size: 15.5px;
+  line-height: 1.625;
+  font-family: "Sofia Pro", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+  color: rgb(51, 51, 51);
+}
+section .content a{
+  font-style: italic;
+  display: inline-block;
+  margin-top: 15px;
+  transition:all .5s ease-in-out;
+  font-variant: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.25;
+  font-family: "Saol Text", "Times New Roman", Times, serif;
+  letter-spacing: 0.04em;
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid currentcolor;
+  width: fit-content;
+  transition: opacity 300ms ease-in-out 0s;
+}
+.content a{
+  color: rgb(51, 51, 51);
+  transition: opacity 300ms ease-in-out 0s;
+}
+.content a:hover{
+  opacity: 0.5;
+}
+@media (max-width:767px) {
+  .image-and-copy-section__ImageAndCopySection .gatsby-image-wrapper
+  ,.img-fluid{
+  height: 110vh !important;
+  }
+}
+@media (min-width:768px) {
+  .image-and-copy-section__ImageAndCopySection .gatsby-image-wrapper,
+ .img-fluid {
+      height: 50vh !important;
+  }
+
+}
+@media (min-width:991px) {
+  .image-and-copy-section__ImageAndCopySection .gatsby-image-wrapper{
+      max-height: 80vh;
+  }
+}
+.footer{
+position: relative;
+background-color:rgb(13, 13, 13);;
+padding:15px 0 3px;
+font-size:15px;
+line-height:24px;
+color: #fff;
+}
+.footer a{
+color: #fff;
+text-decoration: none;
+}
+.footer  a:hover{
+opacity: .5;
+}
+.footer .footerLinks a{
+margin-right: 20px;
+font-style: italic;
+font-variant: normal;
+font-weight: 400;
+line-height: 1.25;
+font-family: "Saol Text", "Times New Roman", Times, serif;
+letter-spacing: 0.04em;
+padding-bottom: 2px;
+border-bottom: 1.2px solid currentcolor;
+transition: opacity 300ms ease-in-out 0s;
+color: white;
+margin-right: 12px;
+font-size: medium;
+}
+.footer .copyright-text{
+font-size: 14.6px;
+font-family: "Saol Text", "Times New Roman", Times, serif;
+  letter-spacing: 0.1em;
+}
+/* .footer .container .toUp{
+position: absolute;
+top: 15%;
+right: 7%;
+background-color: #262626;
+padding: 7px 15px;
+border-radius: 2px;
+opacity: 1;
+color: #fff;
+cursor: pointer;
+}
+@media (min-width:991px)and(max-width:1199px) {
+.footer .container .toUp{
+right: 3%;
+}
+} */
+.footer .mobile{
+display: none;
+}
+
+@media (max-width:991px)
+{
+.footer [class^=col-]
+{
+  margin-bottom:30px
+}
+}
+@media (max-width:767px)
+{
+.footer{
+width: 100%;
+  /* height: auto; */
+  padding: 1px 15px 90px;
+  background-color: rgb(13, 13, 13);
+  color: white;
+  font-size: small;
+}
+.footer .footerLinks,  .footer .copyright-text , .footer .toUp{
+  display: none;
+}
+.footer .mobile{
+  display: block;
+  position: relative;
+}
+.footer .mobile img{
+  letter-spacing: .04rem;
+  color: white;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  grid-area: 1 / 1 / auto / span 6;
+  width: 190px;
+  height: 52px;
+  filter: invert();
+}
+.footer .mobile button{
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: #262626;
+  text-align: left;
+  outline: none;
+  position:absolute;
+  top: 10px;
+  right: 0px;
+  z-index: 10;
+  margin-right: 10px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.footer .mobile button i{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: medium;
+  font-weight: 900;
+}
+.footer .mobile .ContactUsSection{
+  font-family: Sofia Pro,Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif;
+  font-weight: 300;
+  letter-spacing: .04rem;
+  line-height: 1.625;
+  color: white;
+  font-size: small;
+  margin: 0;
+  grid-column: 1 / span 6;
+  display: grid;
+}
+.footer .mobile .ContactUsSection h2,
+.footer .mobile .AddressSection h2,
+.footer .mobile .OfficeHoursSection h2
+{
+  margin: 0;
+  font-style: italic;
+  font-variant: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.25;
+  font-family: "Saol Text", "Times New Roman", Times, serif;
+  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+  color: white;
+}
+.footer .mobile .ContactUsSection .contactMethod{
+  font-family: Sofia Pro,Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif;
+  font-weight: 300;
+  letter-spacing: .04rem;
+  line-height: 1.625;
+  color: white;
+  font-size: small;
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  column-gap: 8px;
+  width: fit-content;
+}
+.footer .mobile .ContactUsSection .contactMethod > :last-child{
+  justify-self: end;
+  min-height: 24px;
+}
+.footer .mobile .ContactUsSection .contactMethod > *{
+  grid-row: 1 / auto;
+}
+.footer .mobile .AddressSection{
+  font-family: Sofia Pro,Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif;
+  font-weight: 300;
+  letter-spacing: .04rem;
+  line-height: 1.625;
+  color: white;
+  font-size: small;
+  margin: 0;
+  display: block;
+  grid-column: 1 / span 3;
+}
+.footer .mobile .OfficeHoursSection{
+  font-family: Sofia Pro,Gill Sans,Gill Sans MT,Calibri,Trebuchet MS,sans-serif;
+  font-weight: 300;
+  letter-spacing: .04rem;
+  line-height: 1.625;
+  color: white;
+  font-size: small;
+  margin: 0;
+  grid-column: 4 / span 3;
+  display: grid;
+  
+}
+p.hours-time{
+width: 150%;
+position: relative;
+left: -20px;
+}
+}
+/* .w-15{
+width: 15%;
+}  */
+.w-5{
+width:5%;
+}
+.h-5{
+max-height: 5%;
+}
+.w-95{
+width: 95%;
+}
+.hideClass{
+display:none;
+}
+.showClass{
+display: block;
+}
+.small-nav{
+top:10px !important; 
+position:sticky !important;
+height: 100%;
+margin: 20px auto;
+
+}
+.small-nav, .big-nav{
+z-index: 99;
+background: #fff;
+}
+h4 i{
+margin-bottom: 30px;
+}
+.small-nav a h3 img:first-child{
+width: 120px;
+margin-bottom: 120px;
+display: flex;
+justify-content: center;
+justify-self: center;
+align-items: center;
+}
+@media only screen and (min-width:768px) and (max-width:991px){
+.w-5{
+  width:8%;
+}
+.w-95{
+  width: 92%;
+}
+.small-nav a h3{
+  position: relative;
+  overflow: hidden;
+}
+.small-nav a h3 img:first-child{
+  margin-bottom: 400px;
+  width: 90px;
+}
+}
+.paraLink{
+width: 50px;
+}
+.big-nav{
+position:fixed;
+top: 0px;
+left: 0px;
+bottom: 0px;
+overflow-y: scroll;
+max-height: 100%;
+/* left: 0 !important; */
+/* top: 0; */
+/* width: 600px !important; */
+z-index: 100;
+animation: forwards;
+animation-name: run;
+animation-duration: 1s;
+}
+@keyframes run {
+0% {
+  width: 0;
+}
+100% {
+  width: 600px;    
+}
+}
+#social{
+margin-top: 250px;
+}
+.navigation__PageLinks{
+list-style: none;
+align-self: center;
+display: grid;
+row-gap: 15px;
+margin-bottom: 13rem;
+}
+.navigation__PageLinks_x{
+margin-top: 50px;
+}
+.navigation__PageLinks:first-child{
+margin-top: 50px;
+}
+a{
+text-decoration: none !important;
+}
+.typography__MenuSubheadingStyle{
+font-weight: 400;
+font-size: 19px;
+line-height: 1.375;
+font-family: "Saol Text", "Times New Roman", Times, serif;
+letter-spacing: 0.01em;
+color: rgb(51, 51, 51);
+margin-bottom: 0px;
+margin-top: 0;
+width: 100%;
+}
+.navigation__VenueLink{
+display: grid;
+column-gap: 15px;
+-webkit-box-align: center;
+align-items: center;
+grid-template-columns: 32px 1fr;
+margin-left: 15px;
+}
+.navigation__VenueLink > img{
+place-self: center;
+height: 32px;
+}
+.typography__RealWeddingsThirdHeadingStyle{
+font-style: italic;
+font-variant: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.375;
+font-family: "Saol Text", "Times New Roman", Times, serif;
+letter-spacing: 0.04em;
+color: rgb(51, 51, 51);
+/* grid-row: 1 / auto; */
+margin-bottom: 0px;
+transform: translateY(2px);
+}
+@media (min-width:768px) {
+.mobile{
+  display: none;
+}
+}
+@media (max-width:767px) {
+.normal{
+  display: none;
+}
+.row{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+} 
+.w-95{
+  width: 100%;
+}
+.small-mobile-nav{
+  position:sticky !important;
+  width: 100%;
+  top: 0px;
+  /* margin: 20px auto; */
+  z-index: 399;
+  background: #fff;
+  height: 50px !important;
+}
+h4{
+  text-align: right;
+  position: relative;
+  left: -30px;
+}
+h6 > img{
+  width:140px; position:static
+}
+.big-mobile-nav{
+  top: 0px;
+  width: 100%;
+  z-index: 100;
+  position: fixed;
+  overflow-x: scroll;
+  background: #fff;
+  animation-name: down;
+  animation-duration: 2.5s;
+}
+@keyframes down {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 800px;   
+  }
+}
+
+.typography__MenuSubheadingStyle{
+  font-size: 32px;
+}
+.social_img{
+  margin-top: 30px;
+  width: 50px;
+}
+}
