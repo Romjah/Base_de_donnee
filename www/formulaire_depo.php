@@ -1,17 +1,28 @@
 <?php
 
-$user = 'root';
-$pass = 'root';
+    try {
+        $user = "root";
+        $pass = "root";
+        $bdd = new PDO('mysql:host=localhost;dbname=Banque', $user, $pass);
 
-try {
-    $db = new PDO ('mysql:host=localhost;dbname=Banque', $user, $pass);
-    foreach ($db->query('SELECT * FROM deposits') as $row) {
-        print_r($row);
+        $req = 'SELECT * from users';
+
+        foreach($bdd->query($req) as $row) {
+            affichl($row);
+        }
+
+        $bdd = null;
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage() . "<br/>";
+        die();
     }
-} catch (PDOException $e) {
-    print "Erreur : " . $e->getMessage() . "<br/>";
-    die;
-}
+
+    function affichl($row) {
+        echo 'nom : ' . $row['prenom'];
+        echo '<br/>';
+        echo 'email : ' . $row['email'];
+        echo '<br/>';
+    }
 
 ?>
 
@@ -19,11 +30,10 @@ try {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="stylec.css">
     <title>Page perso</title>
 </head>
 <body>
-<form>
+<form method="get" action="perso.php">
     <label for="currency">Type d'argent :</label>
     <select id="currency" name="currency">
     <option value="EUR">euros</option>

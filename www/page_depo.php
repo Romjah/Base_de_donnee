@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="stylec.css">
     <title>Page perso</title>
 </head>
 <body>
- <form method="POST" action="">
-        <input type=button onclick=window.location.href='http://localhost:8888/formulaire_depo.php'; value="Depo thunes" />
+ <form method="get" action="formulaire_depo.php">
+    <p>
+        <input type="number" name="role" />
+        <input type="text" name="email" />
+        <input type="text" name="password" />
+        <input type="number" name="id_transaction" />
+        <input type="text" name="nom" />
+        <input type="text" name="prenom" />
+        <input type="number" name="token" />
+        <input type="submit" value="Depo thunes" />
+    </p>
  </form>
 </body>
 </html>
