@@ -103,7 +103,7 @@ CREATE TABLE `users` (
   `mdp` varchar(255) NOT NULL,
   `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grade` int(11) NOT NULL DEFAULT 0,
-  `id_transaction` int(11) NOT NULL DEFAULT 0,
+  `id_transaction` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
   `token` text NOT NULL
