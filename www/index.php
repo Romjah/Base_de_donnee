@@ -11,6 +11,8 @@ $page_title = 'Home page';
 require_once __DIR__ . '/../src/templates/partials/html_head.php';
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
