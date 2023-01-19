@@ -33,16 +33,21 @@
                             // On hash le mot de passe avec Bcrypt, via un coût de 12
                             $cost = ['cost' => 12];
                             $password = password_hash($password, PASSWORD_BCRYPT, $cost);
+                            
+                            // On stock l'adresse IP
+                            $last_ip = $_SERVER['REMOTE_ADDR']; 
 
                             // On insère dans la base de données      (ATTENTION PROBLÈME DÉTECTÉ: "'role' doesn't have a default value" NI DANS LA TABLE USERS NI DANS LA TABLE GRADE)
-                            $insert = $db->prepare('INSERT INTO users( email, password, nom, prenom, token) VALUES( :email, :password, :nom, :prenom, :token)');
+                            $insert = $db->prepare('INSERT INTO users( email, password, nom, prenom, last_ip, token) VALUES( :email, :password, :nom, :prenom, :last_ip, :token)');
                             echo 'Entrée de execute(array()) LLLLOOOOOOLLLLL</br>';
                             $insert->execute(array(                     //
                                 'email' => $email,                      //
                                 'password' => $password,                // ENDROIT DU PROBLÈME
                                 'nom' => $nom,                          //
                                 'prenom' => $prenom,
-                                'token' => bin2hex(openssl_random_pseudo_bytes(64))                    //
+                                'last_ip' => $last_ip,
+                                'token' => bin2hex(openssl_random_pseudo_bytes(64))
+
                             ));
                             echo 'Sortie de execute(array() :)</br>';
                             // On redirige avec le message de succès

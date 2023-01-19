@@ -43,7 +43,7 @@
 
 
                 <div class="text-center">
-                        <h1 class="p-5">Bonjour <?php echo  $data['nom'].' '.$data['prenom']; ?> !</h1>
+                        <h1 class="p-5">Bonjour <?php echo $data['nom'].' '.$data['prenom']; ?> !</h1>
                         <hr />
                         <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
                         <!-- Button trigger modal -->
