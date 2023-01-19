@@ -15,7 +15,7 @@ if (!$_SESSION['mdp']){
     $recupusers = $bdd->query('SELECT * from users');
     while($userr = $recupusers->fetch()){
         ?>
-        <p><?= $userr['nom', 'prenom', 'email']; ?> </p>
+       <p><?= $userr['nom']; ?> <?= $userr['prenom']; ?> <?= $userr['email']; ?> </p>
         <?php
     }
     ?>
