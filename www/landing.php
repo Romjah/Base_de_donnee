@@ -1,14 +1,13 @@
 <?php 
     session_start();
-    require_once __DIR__ . '/../../src/config.php';
-    // si la session existe pas soit si l'on est pas connecté on redirige
+    require_once __DIR__ . '../../src/db.php';// si la session existe pas soit si l'on est pas connecté on redirige
     if(!isset($_SESSION['user'])){
-        header('Location:index.php');
+        header('Location:connexion.php');
         die();
     }
 
     // On récupere les données de l'user
-    $req = $bdd->prepare('SELECT * FROM user WHERE token = ?');
+    $req = $db->prepare('SELECT * FROM users WHERE token = ?');
     $req->execute(array($_SESSION['user']));
     $data = $req->fetch();
    
@@ -44,7 +43,7 @@
 
 
                 <div class="text-center">
-                        <h1 class="p-5">Bonjour <?php echo $data['pseudo']; ?> !</h1>
+                        <h1 class="p-5">Bonjour <?php echo  $data['nom'].' '.$data['prenom']; ?> !</h1>
                         <hr />
                         <a href="deconnexion.php" class="btn btn-danger btn-lg">Déconnexion</a>
                         <!-- Button trigger modal -->

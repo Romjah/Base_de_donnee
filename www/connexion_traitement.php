@@ -1,7 +1,6 @@
 <?php 
     session_start(); // Démarrage de la session
-    require_once __DIR__ . '../../src/config.php'; // On inclu la connexion à la db
-
+    require_once __DIR__ . '../../src/db.php'; // On inclu la connexion à la db
     if(!empty($_POST['email']) && !empty($_POST['password'])) // Si il existe les champs email, password et qu'il sont pas vident
     {
         // Patch XSS
@@ -11,7 +10,7 @@
         $email = strtolower($email); // email transformé en minuscule
         
         // On regarde si l'utilisateur est inscrit dans la table users
-        $check = $db->prepare('SELECT fullname, email, password, token FROM users WHERE email = ?');
+        $check = $db->prepare('SELECT nom, prenom, email, password, token FROM users WHERE email = ?');
         $check->execute(array($email));
         $data = $check->fetch();
         $row = $check->rowCount();
@@ -28,10 +27,10 @@
                 if(password_verify($password, $data['password']))
                 {
                     // On créer la session et on redirige sur landing.php
-                    $_SESSION['users'] = $data['token'];
+                    $_SESSION['user'] = $data['token'];
                     header('Location: landing.php');
                     die();
-                }else{ header('Location: index.php?login_err=password'); die(); }
-            }else{ header('Location: index.php?login_err=email'); die(); }
-        }else{ header('Location: index.php?login_err=already'); die(); }
-    }else{ header('Location: index.php'); die();} // si le formulaire est envoyé sans aucune données
+                }else{ header('Location: connexion.php?login_err=password'); die(); }
+            }else{ header('Location: connexion.php?login_err=email'); die(); }
+        }else{ header('Location: connexion.php?login_err=already'); die(); }
+    }else{ header('Location: connexion.php'); die();} // si le formulaire est envoyé sans aucune données
