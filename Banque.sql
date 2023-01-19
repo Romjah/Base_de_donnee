@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 19 jan. 2023 à 00:26
--- Version du serveur :  5.7.34
--- Version de PHP : 8.0.8
+-- Généré le : jeu. 19 jan. 2023 à 10:25
+-- Version du serveur : 5.7.39
+-- Version de PHP : 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `Banques`
+-- Base de données : `Banque`
 --
 
 -- --------------------------------------------------------
@@ -100,13 +100,13 @@ CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `role` int(11) NOT NULL DEFAULT '1',
   `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `mdp` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grade` varchar(255) NOT NULL DEFAULT 'non_verif',
-  `id_transaction` int(11) NOT NULL,
+  `id_transaction` int(11) DEFAULT NULL,
   `nom` varchar(255) NOT NULL,
   `prenom` varchar(255) NOT NULL,
-  `token` int(11) NOT NULL
+  `token` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
