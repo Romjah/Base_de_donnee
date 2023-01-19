@@ -13,7 +13,7 @@ if(isset($_POST['connexion'])){
         header ('Location: administration.php');
         }
     
-        $reccupUser = $bdd->prepare('SELECT * FROM user WHERE email= ? and mdp= ?');
+        $reccupUser = $bdd->prepare('SELECT * FROM users WHERE email= ? and mdp= ?');
         $reccupUser->execute(array($email, $mdp));
 
         if($reccupUser->rowCount() > 0){
