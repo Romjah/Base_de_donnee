@@ -1,6 +1,6 @@
 <?php 
     session_start(); // Démarrage de la session
-    require_once __DIR__ . '../../src/config.php'; // On inclu la connexion à la bdd
+    require_once __DIR__ . '../../src/config.php'; // On inclu la connexion à la db
 
     if(!empty($_POST['email']) && !empty($_POST['password'])) // Si il existe les champs email, password et qu'il sont pas vident
     {
@@ -11,7 +11,7 @@
         $email = strtolower($email); // email transformé en minuscule
         
         // On regarde si l'utilisateur est inscrit dans la table users
-        $check = $bdd->prepare('SELECT fullname, email, password, token FROM users WHERE email = ?');
+        $check = $db->prepare('SELECT fullname, email, password, token FROM users WHERE email = ?');
         $check->execute(array($email));
         $data = $check->fetch();
         $row = $check->rowCount();

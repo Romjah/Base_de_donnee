@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mer. 18 jan. 2023 à 18:16
+-- Généré le : mer. 18 jan. 2023 à 20:54
 -- Version du serveur :  5.7.34
 -- Version de PHP : 8.0.8
 
@@ -87,7 +87,7 @@ CREATE TABLE `transactions` (
   `date_retrait` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description_depot` text NOT NULL,
   `montant_retrait` int(100) NOT NULL,
-  `id_transaction` int(11) NOT NULL
+  `id_transaction` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -98,14 +98,15 @@ CREATE TABLE `transactions` (
 
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
-  `role` int(11) NOT NULL DEFAULT '1',
+  `role` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created _at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `grade` varchar(10) NOT NULL DEFAULT 'non-verif',
+  `grade` int(4) NOT NULL,
   `id_transaction` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `prenom` varchar(255) NOT NULL
+  `prenom` varchar(255) NOT NULL,
+  `token` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -195,7 +196,7 @@ ALTER TABLE `rôles`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Contraintes pour les tables déchargées
