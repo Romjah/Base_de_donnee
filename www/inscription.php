@@ -12,7 +12,7 @@ if (isset($_POST["inscription"])){
         $insert_user = $bdd ->prepare('INSERT INTO users (nom, email, mdp, token, prenom) VALUES (?, ?, ?, ?, ?)');
         $insert_user->execute (array($email, $mdp, $nom, $prenom, $token));
         echo "L'utilisateur a bien été créé !";
-        header("location:connexion.php");
+        header("location:connextion.php");
     } else{
         echo "les champs ne sont pas remplis";
     }
