@@ -52,7 +52,7 @@
                 <input type="email" name="email" class="form-control" placeholder="Email" required="required" autocomplete="off">
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Mot de passe" required="required" autocomplete="off">
+                <input type="password" name="mdp" class="form-control" placeholder="Mot de passe" required="required" autocomplete="off">
             </div>
             <div class="form-group">
             <input type="submit" value="connexion" name="connexion" class="btn btn-primary btn-block">
