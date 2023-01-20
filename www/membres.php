@@ -15,7 +15,7 @@ if (!$_SESSION['mdp']){
     $recupusers = $bdd->query('SELECT * from users');
     while($userr = $recupusers->fetch()){
         ?>
-       <p><?= $userr['nom']; ?> <?= $userr['prenom']; ?> <?= $userr['email']; ?> </p>
+       <a><?= $userr['nom']; ?> <?= $userr['prenom']; ?> <?= $userr['email']; ?> <a href="bannir.php?id=<?= $userr['id']; ?>">bannir le membre</a>
         <?php
     }
     ?>
