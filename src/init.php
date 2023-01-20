@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 // db
 require_once __DIR__ . '/db.php';
 
