@@ -555,3 +555,10 @@ h6 > img{
   width: 50px;
 }
 }
+
+
+.col-md-12{
+  position: relative;
+  left: -10%;
+  top: 250px;
+}
