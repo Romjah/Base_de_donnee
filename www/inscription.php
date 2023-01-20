@@ -34,7 +34,7 @@ if (isset($_POST["inscription"])){
 <head>
     <meta charset="UTF-8">
     <title>INSCRIPTION</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylec.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
@@ -81,6 +81,6 @@ if (isset($_POST["inscription"])){
             font-size: 15px;
             font-weight: bold;
         }
-</style>
+    </style>
 </body>
 </html>
