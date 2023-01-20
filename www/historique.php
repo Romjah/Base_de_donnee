@@ -23,3 +23,17 @@
     }
 
 ?>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Page perso</title>
+</head>
+<body>
+ <form method="get" action="connecter.php">
+    <p>
+        <input type="submit" value="retour" />
+    </p>
+ </form>
+</body>
+</html>

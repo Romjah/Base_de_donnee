@@ -21,6 +21,10 @@
         <input type="submit" value="Demande de dépôt" />
     </p>
     </form> 
- </form>
+    <form method="get" action="connecter.php">
+    <p>
+        <input type="submit" value="retour" />
+    </p>
+    </form>
 </body>
 </html>
